@@ -58,7 +58,28 @@ public class databaseSetup {
         }
 
     }
+    public static void createDirector(String id, String name) {
+        Sql2o sql = new Sql2o(url, "root", "projectdb");
+        String insertSql = "INSERT INTO director\nVALUES(:id, :name);";
 
+        try (org.sql2o.Connection conn = sql.open()) {
+            conn.createQuery(insertSql)
+                    .addParameter("id", id)
+                    .addParameter("name", name)
+                    .executeUpdate();
+        }
+    }
+    public static void createActor(String id, String name) {
+        Sql2o sql = new Sql2o(url, "root", "projectdb");
+        String insertSql = "INSERT INTO actor\nVALUES(:id, :name);";
+
+        try (org.sql2o.Connection conn = sql.open()) {
+            conn.createQuery(insertSql)
+                    .addParameter("id", id)
+                    .addParameter("name", name)
+                    .executeUpdate();
+        }
+    }
     public static void parseMovieFile(String filepath) {
 
         File file = new File(filepath);
@@ -80,6 +101,41 @@ public class databaseSetup {
             System.out.println("File not found.");
         }
 
+    }
+
+    public static void parseDirectorFile(String filepath) {
+        File file = new File(filepath);
+
+        try {
+            Scanner in = new Scanner(file);
+            while (in.hasNext()) {
+                String currDirect = in.nextLine();
+                String[] attr = currDirect.split("\t");
+                createDirector(attr[1], attr[2]);
+            }
+            in.close();
+        }
+
+        catch (FileNotFoundException e) {
+            System.out.println("File not found.");
+        }
+    }
+    public static void parseActorFile(String filepath) {
+        File file = new File(filepath);
+
+        try {
+            Scanner in = new Scanner(file);
+            while (in.hasNext()) {
+                String currDirect = in.nextLine();
+                String[] attr = currDirect.split("\t");
+                createActor(attr[1], attr[2]);
+            }
+            in.close();
+        }
+
+        catch (FileNotFoundException e) {
+            System.out.println("File not found.");
+        }
     }
     public static void main(String[] args) {
         //createNewDatabase();
@@ -104,7 +160,7 @@ public class databaseSetup {
                 + ");";
         createTable(movie);
         String director = "CREATE TABLE IF NOT EXISTS director )\n"
-                + " id INT, \n"
+                + " id VARCHAR(255), \n"
                 + " name VARCHAR(255), \n"
                 + " PRIMARY KEY (id) \n"
                 + ");";
