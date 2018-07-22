@@ -3,20 +3,29 @@ import java.util.UUID;
 
 public class User {
 
-    private UUID ID;
-    private String name;
-    private String password;
-    private Date joinedDate;
+    public int ID;
+    public String name;
+    public String password;
+    public Date joined_date;
 
-    public User(UUID id, String name, String password, Date joinedDate) {
+    public User() {
+
+    }
+    public User(String name, String password, Date joinedDate) {
+        this.ID = (int)Math.random();
+        this.name = name;
+        this.password = password;
+        this.joined_date = joinedDate;
+    }
+    public User(int id, String name, String password, Date joinedDate) {
 
         this.ID = id;
         this.name = name;
         this.password = password;
-        this.joinedDate = joinedDate;
+        this.joined_date = joinedDate;
     }
 
-    public UUID getID() {
+    public int getID() {
         return ID;
     }
     public String getName() {
@@ -24,6 +33,6 @@ public class User {
     }
 
     public Date getJoinedDate() {
-        return joinedDate;
+        return joined_date;
     }
 }

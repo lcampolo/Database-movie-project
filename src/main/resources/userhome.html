@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Hello, $user.name</h1>
+
+    <form method="post">
+        <label for="movieSearch"><b>Search for movies you like</b></label>
+        <input type="text" placeholder="Movie Title" name="movieSearch">
+        <button type="submit">Search</button>
+    </form>
+
+
+    <div>
+        #if($error) <p>$error</p> #end
+        #foreach  ($movie in $movies)
+        <div>
+            <h3>$movie.getTitle()</h3><img src = $movie.getPicture()>
+            <p>Year: $movie.getYear()</p>
+            </br>
+            <p>Country: $movie.getCountry()</p>
+            </br>
+            <p>Critic Score: $movie.getCritic_score()</p>
+            </br>
+            <p>Audience Score: $movie.getAudience_score()</p>
+            </br>
+            <form method="post">
+                <input type="submit" name=$movie.getId() value="Add to Favorites"/>
+            </form>
+        </div>
+        #end
+    </div>
+
+</body>
+</html>
