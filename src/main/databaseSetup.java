@@ -53,7 +53,7 @@ public class databaseSetup {
      */
     public static void createDirector(String id, String name) {
         Sql2o sql = new Sql2o(url, "root", "projectdb");
-        String insertSql = "INSERT INTO director\nVALUES(':id', ':name');";
+        String insertSql = "INSERT INTO director\nVALUES(:id, :name);";
 
         try (org.sql2o.Connection conn = sql.open()) {
             conn.createQuery(insertSql)
@@ -67,7 +67,7 @@ public class databaseSetup {
      */
     public static void createActor(String id, String name) {
         Sql2o sql = new Sql2o(url, "root", "projectdb");
-        String insertSql = "INSERT INTO actor\nVALUES(':id', ':name');";
+        String insertSql = "INSERT INTO actor\nVALUES(:id, :name);";
 
         try (org.sql2o.Connection conn = sql.open()) {
             conn.createQuery(insertSql)
@@ -487,11 +487,10 @@ public class databaseSetup {
         //createNewDatabase();
 
         String user = "CREATE TABLE IF NOT EXISTS user (\n"
-                + " id BIGINT, \n"
                 + " name VARCHAR(20), \n"
                 + " password VARCHAR(15) NOT NULL, \n"
                 + " joined_date DATE, \n"
-                + " PRIMARY KEY (id) \n"
+                + " PRIMARY KEY (name) \n"
                 + ");";
         createTable(user);
         String movie = "CREATE TABLE IF NOT EXISTS movie (\n"
