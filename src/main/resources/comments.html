@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comments</title>
+    <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
+</head>
+<style>
+    .comment {
+        border: 1px solid #ccc;
+    }
+</style>
+<body>
+    <h3>$movie.getTitle()</h3>
+    <form action="/movies/$user">
+        <input type="submit" value="Back to your homepage."/>
+    </form>
+    <img src = $movie.getPicture() style="max-height:100%; max-width:100%;">
+
+    <p>Year: $movie.getYear()</p>
+    <p>Country: $movie.getCountry()</p>
+    <p>Critic Score: $movie.getCritic_score()</p>
+    <p>Audience Score: $movie.getAudience_score()</p>
+    <form method="post" id="commentbox">
+        <textarea rows="4" cols="50" name="comment" form="commentbox">
+            Enter comment here...
+        </textarea>
+        <input type="submit">
+    </form>
+    <div>
+        #foreach ($comment in $comments)
+        <p class="comment">$comment.getText()</p>
+        <p>Made on: $comment.getDate()</p>
+        <p>Made by: $comment.getUser_name()</p>
+        <p>User Since: $comment.getUser_date()</p>
+        <br><br>
+        #end
+    </div>
+
+</body>
+</html>

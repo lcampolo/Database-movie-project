@@ -8,6 +8,13 @@ public class Movie {
     private Double critic_score;
     private Double audience_score;
 
+    public Movie() {
+
+    }
+    public Movie(String title, String picture_url) {
+        this.title = title;
+        this.picture_url = picture_url;
+    }
     public Movie(int id, String title, String picture_url, String year, String country, Double critic_score, Double audience_score ) {
         this.id = id;
         this.title = title;

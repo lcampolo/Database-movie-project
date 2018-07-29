@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Favorites</title>
+</head>
+<body>
+    <h2>Hello, $user. These are your favorite movies.</h2>
+    <form action="/movies/$user">
+        <input type="submit" value="Back to your homepage."/>
+    </form>
+    <br>
+    <div>
+        #foreach($movie in $movies)
+        <div class="container">
+            <p>$movie.getTitle()</p>
+            <img src = $movie.getPicture() style="max-height:100%; max-width:100%;">
+        </div>
+        #end
+    </div>
+
+</body>
+</html>

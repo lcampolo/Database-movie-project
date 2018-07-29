@@ -4,12 +4,79 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-    <h1>Hello, $user.name</h1>
+<style>
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 16px;
+}
 
+img {
+    max-height:100%;
+    max-width:100%;
+    float:left;
+}
+.movie_form {
+    border: 3px solid black;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+</style>
+<body>
+    <h1>Hello, $user</h1>
     <form method="post">
+        <input name="logout" type="submit" value="Log Out">
+    </form>
+    <br>
+    <form action="/movies/$user/attrrank">
+        <input type="submit" value="Set your recommendation preferences."/>
+    </form>
+    <br>
+    <form action="/movies/$user/recommendations">
+        <input type="submit" value="Generate recommendations." />
+    </form>
+    <br>
+    <form action="/movies/$user/favorites">
+        <input type="submit" value="See your list of favorite movies.">
+    </form>
+    <br>
+    #if($movie_message) <h3>$movie_message</h3> #end
+
+    <form method="post" class="movie_form">
         <label for="movieSearch"><b>Search for movies you like</b></label>
-        <input type="text" placeholder="Movie Title" name="movieSearch">
+        <input type="text" placeholder="Movie Title" name="movieSearch" id="movieSearch">
         <button type="submit">Search</button>
     </form>
 
@@ -18,19 +85,22 @@
         #if($error) <p>$error</p> #end
         #foreach  ($movie in $movies)
         <div>
-            <h3>$movie.getTitle()</h3><img src = $movie.getPicture()>
-            <p>Year: $movie.getYear()</p>
-            </br>
-            <p>Country: $movie.getCountry()</p>
-            </br>
-            <p>Critic Score: $movie.getCritic_score()</p>
-            </br>
-            <p>Audience Score: $movie.getAudience_score()</p>
-            </br>
-            <form method="post">
-                <input type="submit" name=$movie.getId() value="Add to Favorites"/>
-            </form>
+        <form method="post" class="movie_form">
+            <h3>$movie.getTitle()</h3>
+                <img src = $movie.getPicture() style="max-height:100%; max-width:100%;">
+
+                <p>Year: $movie.getYear()</p>
+                <p>Country: $movie.getCountry()</p>
+                <p>Critic Score: $movie.getCritic_score()</p>
+                <p>Audience Score: $movie.getAudience_score()</p>
+                <a href="/movies/comments/$movie.getId()">See Comments about this movie.</a>
+
+            <input name="$movie.getId()" class="button" type="submit" value="Add to Favorites">
+        </form>
         </div>
+
+
+
         #end
     </div>
 

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recommendation Preferences</title>
+    <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
+</head>
+<body>
+    <h3>$user.getName(), rank how important the following attributes are to your recommendations.</h3>
+    <p>Rank the following on a scale of 1 to 5. The higher the number, the higher that attribute will be considered in the movies we recommend.</p>
+    <form method="post">
+        <label for="actor">Same actors</label>
+        <br>
+        <select name="actor" id="actor">
+            <option value="1" #if ($user.getActor_rank() == 1) selected="selected" #end>1</option>
+            <option value="2" #if ($user.getActor_rank() == 2) selected="selected" #end>2</option>
+            <option value="3" #if ($user.getActor_rank() == 3) selected="selected" #end>3</option>
+            <option value="4" #if ($user.getActor_rank() == 4) selected="selected" #end>4</option>
+            <option value="5" #if ($user.getActor_rank() == 5) selected="selected" #end>5</option>
+        </select>
+        <br>
+        <label for="director">Same director</label>
+        <br>
+        <select name="director" id="director">
+            <option value="1" #if ($user.getDirector_rank() == 1) selected="selected" #end>1</option>
+            <option value="2" #if ($user.getDirector_rank() == 2) selected="selected" #end>2</option>
+            <option value="3" #if ($user.getDirector_rank() == 3) selected="selected" #end>3</option>
+            <option value="4" #if ($user.getDirector_rank() == 4) selected="selected" #end>4</option>
+            <option value="5" #if ($user.getDirector_rank() == 5) selected="selected" #end>5</option>
+        </select>
+        <br>
+        <label for="country">Same country</label>
+        <br>
+        <select name="country" id="country">
+            <option value="1" #if ($user.getCountry_rank() == 1) selected="selected" #end>1</option>
+            <option value="2" #if ($user.getCountry_rank() == 2) selected="selected" #end>2</option>
+            <option value="3" #if ($user.getCountry_rank() == 3) selected="selected" #end>3</option>
+            <option value="4" #if ($user.getCountry_rank() == 4) selected="selected" #end>4</option>
+            <option value="5" #if ($user.getCountry_rank() == 5) selected="selected" #end>5</option>
+        </select>
+        <br>
+        <label for="u_rank">Similar Rotten Tomatoes User Rank</label>
+        <br>
+        <select name="u_rank" id="u_rank">
+            <option value="1" #if ($user.getU_rank() == 1) selected="selected" #end>1</option>
+            <option value="2" #if ($user.getU_rank() == 2) selected="selected" #end>2</option>
+            <option value="3" #if ($user.getU_rank() == 3) selected="selected" #end>3</option>
+            <option value="4" #if ($user.getU_rank() == 4) selected="selected" #end>4</option>
+            <option value="5" #if ($user.getU_rank() == 5) selected="selected" #end>5</option>
+        </select>
+        <br>
+        <label for="c_rank">Similar Rotten Tomatoes Critic Score</label>
+        <br>
+        <select name="c_rank" id="c_rank">
+            <option value="1" #if ($user.getC_rank() == 1) selected="selected" #end>1</option>
+            <option value="2" #if ($user.getC_rank() == 2) selected="selected" #end>2</option>
+            <option value="3" #if ($user.getC_rank() == 3) selected="selected" #end>3</option>
+            <option value="4" #if ($user.getC_rank() == 4) selected="selected" #end>4</option>
+            <option value="5" #if ($user.getC_rank() == 5) selected="selected" #end>5</option>
+        </select>
+        <br>
+        <label for="genre">Same Genre</label>
+        <br>
+        <select name="genre" id="genre">
+            <option value="1" #if ($user.getGenre_rank() == 1) selected="selected" #end>1</option>
+            <option value="2" #if ($user.getGenre_rank() == 2) selected="selected" #end>2</option>
+            <option value="3" #if ($user.getGenre_rank() == 3) selected="selected" #end>3</option>
+            <option value="4" #if ($user.getGenre_rank() == 4) selected="selected" #end>4</option>
+            <option value="5" #if ($user.getGenre_rank() == 5) selected="selected" #end>5</option>
+        </select>
+        <br>
+        <label for="tag">Similar tags(eg. 'Family Friendly')</label>
+        <br>
+        <select name="tag" id="tag">
+            <option value="1" #if ($user.getTag_rank() == 1) selected="selected" #end>1</option>
+            <option value="2" #if ($user.getTag_rank() == 2) selected="selected" #end>2</option>
+            <option value="3" #if ($user.getTag_rank() == 3) selected="selected" #end>3</option>
+            <option value="4" #if ($user.getTag_rank() == 4) selected="selected" #end>4</option>
+            <option value="5" #if ($user.getTag_rank() == 5) selected="selected" #end>5</option>
+        </select>
+        <br><br>
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>
