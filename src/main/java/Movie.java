@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Movie {
 
     private int id;
@@ -7,11 +9,16 @@ public class Movie {
     private String country;
     private Double critic_score;
     private Double audience_score;
+    public ArrayList<String> topFiveActors;
+    public ArrayList<String> directors;
+    public ArrayList<String> genres;
+    public ArrayList<String> tags;
 
     public Movie() {
 
     }
-    public Movie(String title, String picture_url) {
+    public Movie(int id, String title, String picture_url) {
+        this.id = id;
         this.title = title;
         this.picture_url = picture_url;
     }
@@ -46,6 +53,8 @@ public class Movie {
     public Double getAudience_score() {
         return this.audience_score;
     }
-
-
+    public ArrayList<String> getTopFiveActors() { return this.topFiveActors; }
+    public ArrayList<String> getDirectors() { return this.directors; }
+    public ArrayList<String> getGenres() { return this.genres; }
+    public ArrayList<String> getTags() { return this.tags; }
 }

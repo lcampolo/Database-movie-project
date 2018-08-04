@@ -70,6 +70,26 @@ button:hover {
             <p>Country: $movie.getCountry()</p>
             <p>Critic Score: $movie.getCritic_score()</p>
             <p>Audience Score: $movie.getAudience_score()</p>
+            <ul>Starring:
+                #foreach ($actor in $movie.getTopFiveActors())
+                <li>$actor</li>
+                #end
+            </ul>
+            <ul>Directed by:
+                #foreach ($director in $movie.getDirectors())
+                <li>$director</li>
+                #end
+            </ul>
+            <ul>Genre(s):
+                #foreach ($genre in $movie.getGenres())
+                <li>$genre</li>
+                #end
+            </ul>
+            <ul>Tags(s):
+                #foreach ($tag in $movie.getTags())
+                <li>$tag</li>
+                #end
+            </ul>
             <a href="/movies/comments/$movie.getId()">See or Leave Comments about this movie.</a>
 
             <input name="$movie.getId()" class="button" type="submit" value="Don't show me this movie again">

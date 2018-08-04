@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Homepage</title>
 </head>
 <style>
 .container {
@@ -48,6 +48,11 @@ button {
     cursor: pointer;
     width: 100%;
 }
+
+ul {
+    padding-left: 50px;
+    clear:both;
+}
 /* Add a hover effect for buttons */
 button:hover {
     opacity: 0.8;
@@ -87,13 +92,36 @@ button:hover {
         <div>
         <form method="post" class="movie_form">
             <h3>$movie.getTitle()</h3>
-                <img src = $movie.getPicture() style="max-height:100%; max-width:100%;">
-
+                <div>
+                    <img src = $movie.getPicture() style="max-height:100%; max-width:100%;">
+                </div>
                 <p>Year: $movie.getYear()</p>
                 <p>Country: $movie.getCountry()</p>
                 <p>Critic Score: $movie.getCritic_score()</p>
                 <p>Audience Score: $movie.getAudience_score()</p>
-                <a href="/movies/comments/$movie.getId()">See Comments about this movie.</a>
+
+                <ul>Starring:
+                #foreach ($actor in $movie.getTopFiveActors())
+                <li>$actor</li>
+                #end
+                </ul>
+                <ul>Directed by:
+                    #foreach ($director in $movie.getDirectors())
+                    <li>$director</li>
+                    #end
+                </ul>
+                <ul>Genre(s):
+                    #foreach ($genre in $movie.getGenres())
+                    <li>$genre</li>
+                    #end
+                </ul>
+                <ul>Tags(s):
+                    #foreach ($tag in $movie.getTags())
+                    <li>$tag</li>
+                    #end
+                 </ul>
+
+                <a href="/movies/comments/$movie.getId()">See or Leave Comments about this movie.</a>
 
             <input name="$movie.getId()" class="button" type="submit" value="Add to Favorites">
         </form>
